@@ -2,7 +2,7 @@
 #include "Game.h"
 
 int main(int argc, char** argv){
-	try{
+	/*try{
 		Game* game = &(Game::GetInstance());
 
 		game->Run();
@@ -11,7 +11,7 @@ int main(int argc, char** argv){
 	}catch(const char* error_msg){
 			cout << error_msg << endl;
 			getchar();
-		}
+		}*/
 
 	return 0;
 }
