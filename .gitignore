@@ -1,5 +1,4 @@
-*.o
-main
-linux_sdl_gl.sup
-valgrind-out.txt
-supdata.log
+bin/
+dep/
+JOGO
+JOGO.exe
