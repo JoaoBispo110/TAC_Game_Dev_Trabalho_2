@@ -15,6 +15,7 @@
 			Vec2 operator-(Vec2 vector);
 			float operator*(Vec2 vector);
 			Vec2 operator*(float scalar);
+			Vec2 operator/(float scalar);
 			float Magnitude();
 			Vec2 Normalized();
 			float VDistance(float x, float y);
@@ -23,5 +24,7 @@
 			void Rot(float theta);
 
 	};
+
+	Vec2 operator*(float scalar, Vec2 vector);
 
 #endif

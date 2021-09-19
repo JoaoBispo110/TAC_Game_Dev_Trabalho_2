@@ -9,6 +9,32 @@ Rect::Rect(float x, float y, float w, float h){
 	this->h = h;
 }
 
+Rect Rect::operator+(Vec2 vector){
+	Rect Result;
+	Result.x = x + vector.x;
+	Result.y = y + vector.y;
+	Result.w = w;
+	Result.h = h;
+
+	return Result;
+}
+
+Rect Rect::operator*(float scalar){
+	Rect Result(x, y, w*scalar, h*scalar);
+
+	return Result;
+}
+
+Rect operator*(float scalar, Rect rectangle){
+	return (rectangle * scalar);
+}
+
+Rect Rect::operator/(float scalar){
+	Rect Result(x, y, w/scalar, h/scalar);
+
+	return Result;
+}
+
 Vec2 Rect::Center(){
 	Vec2 Result;
 

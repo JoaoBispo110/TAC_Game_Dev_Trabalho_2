@@ -38,7 +38,7 @@ Vec2 Vec2::operator-(Vec2 vector){
 }
 
 float Vec2::operator*(Vec2 vector){
-	return ((x * vector.x) + (y + vector.y));
+	return ((x * vector.x) + (y * vector.y));
 }
 
 Vec2 Vec2::operator*(float scalar){
@@ -46,6 +46,19 @@ Vec2 Vec2::operator*(float scalar){
 	
 	Result.x = x * scalar;
 	Result.y = y * scalar;
+
+	return Result;
+}
+
+Vec2 operator*(float scalar, Vec2 vector){
+	return vector * scalar;
+}
+
+Vec2 Vec2::operator/(float scalar){
+	Vec2 Result;
+	
+	Result.x = x / scalar;
+	Result.y = y / scalar;
 
 	return Result;
 }
