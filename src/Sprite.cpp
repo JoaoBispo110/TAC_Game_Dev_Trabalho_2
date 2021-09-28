@@ -1,13 +1,15 @@
 #include <string>
 #include "Sprite.h"
 #include "Game.h"
+#include "GameObject.h"
 
 using namespace std;
-Sprite::Sprite(){
+
+Sprite::Sprite(GameObject& associated) : Component(associated){
 	texture = nullptr;//Image not loaded
 }
 
-Sprite::Sprite(string file){
+Sprite::Sprite(GameObject& associated, string file) : Component(associated){
 	texture = nullptr;//Image not loaded
 	try{
 		Open(file);
@@ -34,7 +36,11 @@ void Sprite::Open(string file){
 
 	SDL_QueryTexture(texture, nullptr, nullptr, &width, &height);
 	SetClip(0, 0, width, height);
-	Render(0, 0);
+
+	associated.box.h = height;
+	associated.box.w = width;
+
+	Render();
 }
 
 void Sprite::SetClip(int x, int y, int w, int h){
@@ -44,13 +50,13 @@ void Sprite::SetClip(int x, int y, int w, int h){
 	clipRect.h = h;
 }
 
-void Sprite::Render(int x, int y){
+void Sprite::Render(){
 	SDL_Rect dst;
 
-	dst.x = x;
-	dst.y = y;
-	dst.w = clipRect.w;
-	dst.h = clipRect.h;
+	dst.x = associated.box.x;
+	dst.y = associated.box.y;
+	dst.w = associated.box.w;
+	dst.h = associated.box.h;
 
 	SDL_RenderCopy(Game::GetInstance().GetRenderer(), texture, &clipRect, &dst);
 }
@@ -67,3 +73,13 @@ bool Sprite::IsOpen(){
 	return (texture != nullptr);//Returns true if texture is allocated
 }
 
+void Sprite::Update(float dt){}
+
+bool Sprite::Is(string type){
+	if(type == "Sprite"){
+		return true;
+	}
+	else{
+		return false;
+	}
+}

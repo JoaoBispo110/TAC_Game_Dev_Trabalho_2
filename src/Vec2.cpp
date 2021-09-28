@@ -8,6 +8,13 @@ Vec2::Vec2(float x, float y){
 	this->y = y;
 }
 
+Vec2 Vec2::operator=(Vec2 vector){
+	x = vector.x;
+	y = vector.y;
+
+	return vector;
+}
+
 Vec2 Vec2::operator+(Vec2 vector){
 	Vec2 Result;
 
@@ -91,4 +98,13 @@ float Vec2::Slope(){
 void Vec2::Rot(float theta){
 	x = x*cos(theta) - y*sin(theta);
 	y = x*sin(theta) + y*cos(theta);
+}
+
+Vec2 Vec2::GetRotated(float theta){
+	Vec2 rotacionado;
+
+	rotacionado = *this;
+	rotacionado.Rot(theta);
+
+	return rotacionado;
 }

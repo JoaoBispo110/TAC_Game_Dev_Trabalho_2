@@ -10,6 +10,7 @@
 			float x, y;
 		//metods:
 			Vec2(float x = 0, float y = 0);
+			Vec2 operator=(Vec2 vector);
 			Vec2 operator+(Vec2 vector);
 			Rect operator+(Rect rectangle);
 			Vec2 operator-(Vec2 vector);
@@ -22,6 +23,7 @@
 			float VDistance(Vec2 vector);
 			float Slope();
 			void Rot(float theta);
+			Vec2 GetRotated(float theta);
 
 	};
 

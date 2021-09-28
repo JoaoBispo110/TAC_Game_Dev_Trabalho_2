@@ -13,8 +13,7 @@ Music::Music(string file){
 		Open(file);
 	}catch(const char* error_msg){
 			throw error_msg;
-		}
-	printf("ultima coisa em music\n");
+	}
 }
 
 void Music::Play(int times){
