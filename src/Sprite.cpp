@@ -5,11 +5,11 @@
 
 using namespace std;
 
-Sprite::Sprite(GameObject& associated) : Component(associated){
+Sprite::Sprite(GameObject *associated) : Component(associated){
 	texture = nullptr;//Image not loaded
 }
 
-Sprite::Sprite(GameObject& associated, string file) : Component(associated){
+Sprite::Sprite(GameObject *associated, string file) : Component(associated){
 	texture = nullptr;//Image not loaded
 	try{
 		Open(file);
@@ -37,8 +37,8 @@ void Sprite::Open(string file){
 	SDL_QueryTexture(texture, nullptr, nullptr, &width, &height);
 	SetClip(0, 0, width, height);
 
-	associated.box.h = height;
-	associated.box.w = width;
+	associated->box.h = height;
+	associated->box.w = width;
 
 	Render();
 }
@@ -52,11 +52,14 @@ void Sprite::SetClip(int x, int y, int w, int h){
 
 void Sprite::Render(){
 	SDL_Rect dst;
+	//printf("Entrou render do sprite\n");
 
-	dst.x = associated.box.x;
-	dst.y = associated.box.y;
-	dst.w = associated.box.w;
-	dst.h = associated.box.h;
+	dst.x = associated->box.x;
+	//printf("Coordenada X:%d\n", dst.x);
+	dst.y = associated->box.y;
+	//printf("Coordenada Y:%d\n", dst.y);
+	dst.w = associated->box.w;
+	dst.h = associated->box.h;
 
 	SDL_RenderCopy(Game::GetInstance().GetRenderer(), texture, &clipRect, &dst);
 }

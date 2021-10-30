@@ -4,11 +4,11 @@
 #include "GameObject.h"
 
 using namespace std;
-Sound::Sound(GameObject& associated) : Component(associated){
+Sound::Sound(GameObject *associated) : Component(associated){
 	chunk = nullptr;
 }
 
-Sound::Sound(GameObject& associated, string file) : Component(associated){
+Sound::Sound(GameObject *associated, string file) : Component(associated){
 	try{
 		Open(file);
 	}catch(const char* error_msg){

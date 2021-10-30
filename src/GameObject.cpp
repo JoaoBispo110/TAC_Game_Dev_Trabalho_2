@@ -30,9 +30,11 @@ void GameObject::Update(float dt){
 void GameObject::Render(){
 	int i;
 
+	//printf("Entrou Render GameObject\n");
 	for(i = 0; i < components.size(); i++){
 		components[i]->Render();
 	}
+	//printf("Saiu Render GameObject\n");
 }
 
 bool GameObject::IsDead(){

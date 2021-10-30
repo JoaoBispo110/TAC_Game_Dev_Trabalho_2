@@ -24,6 +24,7 @@
 			float Slope();
 			void Rot(float theta);
 			Vec2 GetRotated(float theta);
+			void Print();
 
 	};
 

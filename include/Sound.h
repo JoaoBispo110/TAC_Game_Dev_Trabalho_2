@@ -15,8 +15,8 @@
 
 		public:
 		//methods:
-			Sound(GameObject& associated);
-			Sound(GameObject& associated, string file);
+			Sound(GameObject *associated);
+			Sound(GameObject *associated, string file);
 			~Sound();
 			void Play(int times = 1);
 			void Stop();

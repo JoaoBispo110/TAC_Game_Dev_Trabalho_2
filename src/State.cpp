@@ -13,10 +13,11 @@
 #include "Constants.h"
 
 State::State(){
-	GameObject bg_obj;
+	GameObject *bg_obj = new GameObject();
 
-	bg = new Sprite(bg_obj, BG_PATH);
-	bg_obj.AddComponent(bg);
+	Sprite *bg = new Sprite(bg_obj, BG_PATH);
+	bg_obj->AddComponent(bg);
+	object_array.emplace_back(bg_obj);
 
 	quitRequested = false;
 
@@ -30,7 +31,6 @@ State::State(){
 
 State::~State(){
 	delete music;
-	delete bg;
 	object_array.clear();
 }
 
@@ -39,7 +39,6 @@ void State::LoadAssets(){}
 void State::Render(){
 	int i;
 	
-	//bg.Open(BG_PATH);
 	for(i = 0; i < object_array.size(); i++){
 		object_array[i]->Render();
 	}
@@ -49,7 +48,7 @@ bool State::QuitRequested(){
 	return quitRequested;
 }
 
-void State::Input(){
+void State::Input(){ 
 	SDL_Event event;
 	int mouseX, mouseY;
 
@@ -118,23 +117,24 @@ void State::Update(float dt){
 }
 
 void State::AddObject(int mouseX, int mouseY){
-	GameObject enemy;
-	Sprite sprite_enemy(enemy, ENEMY_SPRITE_PATH);
-	Sound sound_enemy(enemy, ENEMY_SOUND_PATH);
-	Face face_enemy(enemy);
+	GameObject *enemy = new GameObject();
+	Sprite *sprite_enemy = new Sprite(enemy, ENEMY_SPRITE_PATH);
+	Sound *sound_enemy = new Sound(enemy, ENEMY_SOUND_PATH);
+	Face *face_enemy = new Face(enemy);
 
-	enemy.box.x = (mouseX - (sprite_enemy.GetWidth() / 2));
-	if(enemy.box.x < 0){
-		enemy.box.x = 0;
+	enemy->box.x = (mouseX - (sprite_enemy->GetWidth() / 2));
+	if(enemy->box.x < 0){
+		enemy->box.x = 0;
 	}
-	enemy.box.y = (mouseY - (sprite_enemy.GetHeight() / 2));
-	if(enemy.box.y < 0){
-		enemy.box.y = 0;
+	enemy->box.y = (mouseY - (sprite_enemy->GetHeight() / 2));
+	if(enemy->box.y < 0){
+		enemy->box.y = 0;
 	}
 
-	enemy.AddComponent(&sprite_enemy);
-	enemy.AddComponent(&sound_enemy);
-	enemy.AddComponent(&face_enemy);
+
+	enemy->AddComponent(sprite_enemy);
+	enemy->AddComponent(sound_enemy);
+	enemy->AddComponent(face_enemy);
 	
-	object_array.emplace_back(&enemy);
+	object_array.emplace_back(enemy);
 }

@@ -1,3 +1,4 @@
+#include <iostream>
 #include <cmath>
 #include "Vec2.h"
 #include "Rect.h"
@@ -96,8 +97,10 @@ float Vec2::Slope(){
 }
 
 void Vec2::Rot(float theta){
+	float aux = x;
+	
 	x = x*cos(theta) - y*sin(theta);
-	y = x*sin(theta) + y*cos(theta);
+	y = aux*sin(theta) + y*cos(theta);
 }
 
 Vec2 Vec2::GetRotated(float theta){
@@ -107,4 +110,8 @@ Vec2 Vec2::GetRotated(float theta){
 	rotacionado.Rot(theta);
 
 	return rotacionado;
+}
+
+void Vec2::Print(){
+	printf("X: %f\nY: %f\n", x, y);
 }

@@ -9,11 +9,11 @@
 	class Component{
 		protected:
 		//attributes:
-			GameObject& associated = *(new GameObject());
+			GameObject *associated;
 
 		public:
 		//metods:
-			Component(GameObject& associated);
+			Component(GameObject *associated);
 			~Component();
 			void virtual Update(float dt) = 0;
 			void virtual Render() = 0;

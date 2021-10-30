@@ -13,7 +13,7 @@
 	class GameObject{
 		private:
 		//attributes:
-			vector < Component* > components;
+			vector <Component*> components;
 			bool is_dead;
 
 		public:

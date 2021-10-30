@@ -12,7 +12,7 @@
 
 		public:
 		//metods:
-			Face(GameObject& associated);
+			Face(GameObject *associated);
 			void Damage(int damage);
 			void Update(float dt);
 			void Render();
