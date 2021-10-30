@@ -52,12 +52,9 @@ void Sprite::SetClip(int x, int y, int w, int h){
 
 void Sprite::Render(){
 	SDL_Rect dst;
-	//printf("Entrou render do sprite\n");
 
 	dst.x = associated->box.x;
-	//printf("Coordenada X:%d\n", dst.x);
 	dst.y = associated->box.y;
-	//printf("Coordenada Y:%d\n", dst.y);
 	dst.w = associated->box.w;
 	dst.h = associated->box.h;
 
